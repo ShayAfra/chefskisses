@@ -2,24 +2,23 @@
 <main>
   <div class="min-h-screen">
     <% for(var i=0; i<posts.length; i++) {%>
-      <div>
-                  <div class="card lg:card-side bg-base-100 shadow-xl">
-            <figure><img src="<%= posts[i].image%>" alt="Album"/></figure>
-            <div class="card-body">
-              <h2 class="card-title">New album is released!</h2>
-              <p>Click the button to listen on Spotiwhy app.</p>
-              <div class="card-actions justify-end">
-                <a class="btn btn-primary" href="/post/<%= posts[i]._id%>">See Post</a>
-              </div>
+        <div class="card w-96 bg-base-100 shadow-xl">
+          <figure><img src="<%= posts[i].image%>" alt="recipe photo" /></figure>
+          <div class="card-body">
+            <h2 class="card-title"><%= posts[i].title%></h2>
+            <p><%= posts[i].description%></p>
+            <div class="card-actions justify-end">
+              <a class="btn btn-primary" href="/post/<%= posts[i]._id%>">See Post</a>
             </div>
           </div>
-      </div>
+        </div>
     <% } %>
   </div>
-  
 </main>
 
 <%- include('partials/footer') -%>
+
+
 
 
 

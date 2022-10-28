@@ -1,40 +1,47 @@
 <%- include('partials/header') -%>
-<div>
-  <div class="min-h-screen">
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row">
+    <img src="<%= post.image%>" class="max-w-lg rounded-lg shadow-2xl m-6" />
     <div>
-      <h2><%= post.title %></h2>
-      <imgsrc="<%= post.image%>" />
-      <div>
-        <form
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button type="submit"></button>
-        </form>
-        <h3>Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit"></button>
-        </form>
-        <%}%>
-      </div>
-    </div>
-    <div>
+      <h1 class="text-5xl font-bold"><%= post.title%></h1>
+      <h3>Likes: <%= post.likes %></h3>
+      <form 
+      action="/post/likePost/<%= post.id %>?_method=PUT"
+      method="POST">
+    <button class="btn gap-2 btn-primary" type="submit">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+    </button>
+    </form>  
+
+      <h2 class="py-6"><%= post.description%></h2>
       <h3>Ingredients:</h3>
-      <p><%= post.ingredients %></p>
-      </div>
-    <div>
-      <h3>Instructions</h3>
-      <p><%= post.caption %></p>
-    </div>
-    <div>
-      <a href="/profile">Return to Profile</a>
-      <a href="/feed">Return to Feed</a>
+      <ol class="py-6 list-decimal">
+        <% for(var i=0; i<post.ingredients.length; i++) {%>
+          <li><%= post.ingredients[i]%></li>
+          <% } %>
+      </ol>
+      <h3>Instructions:</h3>
+      <ol class="py-6 list-decimal">
+        <% for(var i=0; i<post.instructions.length; i++) {%>
+          <li><%= post.instructions[i]%></li>
+          <% } %>
+      </ol>
+          <%if(post.user == user.id){ %>
+            <form
+              action="/post/deletePost/<%= post.id %>?_method=DELETE"
+              method="POST"
+            >
+              <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
+            <%}%>
+
+      
+
     </div>
   </div>
 </div>
 
+
 <%- include('partials/footer') -%>
+
