@@ -36,6 +36,23 @@
             </form>
             <%}%>
 
+            <ul>
+              <% for(var i=0; i<comments.length; i++) {%>
+                <li><%= comments[i].comment%></li>
+                <% } %>
+            </ul>
+
+            <form action="/comment/createComment/<%= post._id%>" method="POST">
+              <div class="form-control">
+                   <label class="label" for="title">
+                     <span class="label-text">Comment</span>
+                   </label>
+                   <input type="text" placeholder="Please write a comment" name="comment" class="input input-bordered w-full max-w-xs" />
+                 </div>
+                 <div class="pt-5 place-self-end">                     
+                   <button class="btn btn-primary" type="submit">Submit</button>
+                 </div>
+           </form>
       
 
     </div>
